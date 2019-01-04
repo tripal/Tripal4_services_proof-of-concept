@@ -1,4 +1,4 @@
-## based on php:7.1-fpm-aline
+## based on php:7.1-fpm-alpine
 FROM drupal:7.61-fpm-alpine
 
 ENV PGDATA /var/lib/postgresql/data
@@ -8,6 +8,8 @@ ENV PGUSER postgres
 COPY nginx-drupal.conf /
 
 RUN apk add --update --no-cache nginx postgresql && \
+    apk add vim && \
+    apk add git && \
     curl -L -o /usr/local/bin/drush https://github.com/drush-ops/drush/releases/download/8.1.18/drush.phar && \
     chmod +x /usr/local/bin/drush && \
     mkdir  "${PGDATA}" /var/run/postgresql && \
@@ -35,7 +37,7 @@ RUN apk add --update --no-cache nginx postgresql && \
     drush trp-run-jobs --username=admin && \
     rm -rf ~/.drush && \
     mkdir $PDEXP && \ 
-    pg_dump -U postgres drupal > $PDEXP/drupalexport.pgsql  
+    pg_dump -U postgres drupal > $PDEXP/drupalexport.pgsql 
 
 COPY entrypoint.sh /entrypoint.sh
 
