@@ -45,4 +45,18 @@ The starter Docker container is a barebones setup for running a Flask service.
     Enter container shell
     $ docker ps   # to get CONTAINER ID
     $ docker exec -it [CONTAINER ID] /bin/sh
-    
+   
+###/Gateway
+Kong (gateway) + Konga (management gui) and Postgres (required backend) 
+
+To Run:
+    $ cd Gateway/
+    $ docker-compose up
+
+First time running it, the postgres volume needs to populate, so 
+you may need to stop and restart the service once migrations are
+completed.
+
+The webadmin can then be accessed at port 1337 (default)
+
+Further documentation may be found in the README.md in the director.
