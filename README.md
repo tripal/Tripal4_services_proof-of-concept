@@ -1,5 +1,6 @@
 ## Tripal 4 Services Proof-of-concept
 Experimental code for a services-driven approach to Tripal 4
+  
 
 ### Tripal3/
 Stripped down Docker image of Tripal 3, populated with 
@@ -22,7 +23,7 @@ This Docker container uses Alpine Linux and Alpine Linux Package Manager.
 
 Docker is listening to localhost:8888 (user: admin, password:admin)  
 Adminer is listening to localhost:8080 (user:postgres, password:example)
-
+  
 
 
 ### Services/
@@ -46,17 +47,21 @@ The starter Docker container is a barebones setup for running a Flask service.
     $ docker ps   # to get CONTAINER ID
     $ docker exec -it [CONTAINER ID] /bin/sh
    
-###/Gateway
-Kong (gateway) + Konga (management gui) and Postgres (required backend) 
+    
+### Gateway/
+Docker image contains Kong (gateway) + Konga (management gui) and Postgres 
+(required backend) 
 
 To Run:
+
     $ cd Gateway/
     $ docker-compose up
+
+Active on: http://127.0.0.1:8000/route  
+Webadmin: http://127.0.0.1:1337 (default)
 
 First time running it, the postgres volume needs to populate, so 
 you may need to stop and restart the service once migrations are
 completed.
-
-The webadmin can then be accessed at port 1337 (default)
 
 Further documentation may be found in the README.md in the director.
