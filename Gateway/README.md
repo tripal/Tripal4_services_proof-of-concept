@@ -3,21 +3,21 @@
 Point your browser to port 1337 (default)
 and create a new adminstrative user.
 
-![new user interface](newuser.png)
+![new user interface](img/newuser.png)
 
 You should be prompted to login with the recently created user.
 
-![login prompt](login.png)
+![login prompt](img/login.png)
 
 You will be prompted to add a kong instance, by default, the admin
 port of kong will be on port 8001.
 
-![add kong instance](addinstance.png)
+![add kong instance](img/addinstance.png)
 
 You should then be taken to the admin panel for the kong instance
 you have setup:
 
-![admin panel](admin.png)
+![admin panel](img/admin.png)
 
 The sidebar options of note are as follows:
 
