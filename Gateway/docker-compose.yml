@@ -5,6 +5,7 @@ networks:
     driver: bridge
 
 services:
+## Database
   #postgres 
   kong-database:
     image: postgres:9.6-alpine
@@ -15,14 +16,31 @@ services:
       POSTGRES_USER: kong
       POSTGRES_DB: kong
     ports:
-      - "6543:6543"
+
+      - "5433:5432"
+
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "kong"]
       interval: 5s
       timeout: 5s
       retries: 5
 
- 
+##Kong
+  #db migration: kong
+  
+  kong-migration:
+    image: kong:latest
+    command: "kong migrations up"
+    networks:
+      - tripal-kong
+    restart: on-failure
+    environment:
+      KONG_PG_HOST: kong-database
+    links:
+      - kong-database
+    depends_on:
+      - kong-database
+
   #kong
   
   kong:
@@ -47,22 +65,21 @@ services:
       - "8001:8001"
       - "8000:8000"
 
-  #prep postgres with kong migration
-  
-  kong-migration:
-    image: kong:latest
-    command: "kong migrations up"
+##Konga
+ #db migration: konga
+
+  konga-migration:
+    image: pantsel/konga:next
+    command: "-c prepare -a postgres -u postgresql://kong@kong-database:5432/konga_db"
     networks:
       - tripal-kong
     restart: on-failure
-    environment:
-      KONG_PG_HOST: kong-database
     links:
       - kong-database
     depends_on:
       - kong-database
-
-  ## Konga (Admin GUI)
+ 
+## Konga (Admin GUI)
   
   konga:
     image: pantsel/konga:next
@@ -80,16 +97,4 @@ services:
       - kong-database
     ports:
       - "1337:1337"
-
-  #db migrations for konga
-  konga-prepare:
-    image: pantsel/konga:next
-    command: "-c prepare -a postgres -u postgresql://kong@kong-database:6543/konga_db"
-    networks:
-      - tripal-kong
-    restart: on-failure
-    links:
-      - kong-database
-    depends_on:
-      - kong-database
 
