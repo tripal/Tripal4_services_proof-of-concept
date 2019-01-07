@@ -1,6 +1,13 @@
-starter_service:
-  build: .
-  ports:
-   - "5000:5000"
-  volumes:
-   - .:/code
+version: "3"
+networks:
+  default:
+    external:
+      name: tripal-kong
+
+services:
+  starter_service:
+    build: .
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/code

@@ -1,7 +1,8 @@
-version: "3"
+version: "3.5"
 
 networks:
   tripal-kong:
+    name: tripal-kong
     driver: bridge
 
 services:
