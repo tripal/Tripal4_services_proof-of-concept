@@ -48,9 +48,46 @@ Configuration documentation for kong can be found here:
 [Kong Documentation](https://docs.konghq.com/1.0.x/getting-started/configuring-a-service/)
 
 ## Adding a service
-Add the toy service in Services/starter as an example. Be sure to have the 
-container running before beginning. **Note that the service is listening on
-port 5000.**  
+First you must start your service while not required, it is assumed that the
+service has been added to the tripal-kong network created by starting this
+kong/konga instance via `docker-compose up [-d]`.
+** the -d flag dameonizes the containeris and lets them run in the background **
+
+If starting service using docker run:
+
+```
+docker run --network=tripal-kong --name=my-service-name ...
+```
+
+If starting the service using a docker-compose.yml include the following:
+
+```
+networks:
+  default:
+    external:
+     name: tripal-kong
+```
+
+Check that the service has been added to the network:
+```
+docker network inspect tripal-kong
+```
+
+The service should now be listed alongside the gateway containers.
+Now restart the kong container so that it hosts file is updated:
+
+```
+docker restart kong
+```
+
+
+Using the toy service in Services/starter as an example.
+Navigate to the directory and start the service if it isn't already up:
+```
+docker-compose up -d
+```
+This should start the service as something like `starter-starter-service`
+ **Note that the service is listening on port 5000.**  
 Verify with:
 
     $ curl http://localhost:5000
@@ -58,9 +95,9 @@ Verify with:
 **From the command line:**
 
     curl -i -X POST \  
-       --url http://localhost:1337/services/ \  
+       --url http://localhost:8001/services/ \  
        --data 'name=sample-service' \  
-       --data 'url=http://localhost:5000'  
+       --data 'url=http://starter-starter-service:5000'  
 
 
 **With Konga: (the Kong web GIU)**  
