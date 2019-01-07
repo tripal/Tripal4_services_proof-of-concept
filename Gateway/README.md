@@ -39,4 +39,33 @@ query multiple endpoints.
 Configuration documentation for kong can be found here:
 [Kong Documentation](https://docs.konghq.com/1.0.x/getting-started/configuring-a-service/)
 
+## Adding a service
+Using Services/starter as an example
+after building and putting up:
+# command line
+ ```
+ curl -i -X POST \
+    --url http://localhost:8001/services/ \
+    --data 'name=sample-service' \
+    --data 'url=http://localhost:5000'
+ ```
 
+# konga
+Add same data in a new Service in konga.
+![service](img/addsvc.png)
+
+will add the service to kong's service pool
+
+## Adding a route:
+```
+curl -i -X POST \
+  --url http://localhost:8001/services/sample-service/routes \
+  --data 'paths[]=/hello'
+```
+
+Adding a route in the gui requires you to add it from the service, not the routes
+tab.
+
+![routes](img/routes.png)
+
+defines a path to the service, it should now be reachable at http://localhost:8000/hello
