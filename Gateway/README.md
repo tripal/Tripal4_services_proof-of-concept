@@ -79,7 +79,7 @@ Now restart the kong container so that it hosts file is updated:
 ```
 docker restart kong
 ```
-**If you don't want to restart kong ** : you can use the IP address of 
+**If you don't want to restart kong** : you can use the IP address of 
 the service container as found from inspecting the network, or use the
 IP of your computer if the service ports are exposed to the outside
 world.
