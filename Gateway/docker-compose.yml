@@ -69,33 +69,33 @@ services:
 ##Konga
  #db migration: konga
 
-  konga-migration:
-    image: pantsel/konga:next
-    command: "-c prepare -a postgres -u postgresql://kong@kong-database:5432/konga_db"
-    networks:
-      - tripal-kong
-    restart: on-failure
-    links:
-      - kong-database
-    depends_on:
-      - kong-database
+#  konga-migration:
+#    image: pantsel/konga:next
+#    command: "-c prepare -a postgres -u postgresql://kong@kong-database:5432/konga_db"
+#    networks:
+#      - tripal-kong
+#    restart: on-failure
+#    links:
+#      - kong-database
+#    depends_on:
+#      - kong-database
  
 ## Konga (Admin GUI)
   
-  konga:
-    image: pantsel/konga:next
-    restart: always
-    networks:
-        - tripal-kong
-    environment:
-      DB_ADAPTER: postgres
-      DB_HOST: kong-database
-      DB_USER: kong
-      TOKEN_SECRET: R0uuaHAi5m_8oTwzYIcfJaucZBPxDUhiw3_0SN_vFv
-      DB_DATABASE: konga_db
-      NODE_ENV: production
-    depends_on:
-      - kong-database
-    ports:
-      - "1337:1337"
+#  konga:
+#    image: pantsel/konga:next
+#    restart: always
+#    networks:
+#        - tripal-kong
+#    environment:
+#      DB_ADAPTER: postgres
+#      DB_HOST: kong-database
+#      DB_USER: kong
+#      TOKEN_SECRET: R0uuaHAi5m_8oTwzYIcfJaucZBPxDUhiw3_0SN_vFv
+#      DB_DATABASE: konga_db
+#      NODE_ENV: production
+#    depends_on:
+#      - kong-database
+#    ports:
+#      - "1337:1337"
 
