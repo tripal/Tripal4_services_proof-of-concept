@@ -1,12 +1,33 @@
 ## Tripal 4 Services Proof-of-concept
-Experimental code for a services-driven approach to Tripal 4.  
+Docker containers and experimental code for a services-driven approach to 
+Tripal 4.  
+
+**Stack:** Drupal7/Tripal3, Kong, Python/Flask, Nginx.
+There may well be better stacks, but this will help us explore these elements 
+with the hope of then knowing better how to assess alternatives.
+
+Preliminary steps
+1. Make sure you have at least 8Gb free on your laptop. (This is actually just 
+a guess.)
+
+2. Install Docker: https://docs.docker.com/v17.12/install. Note that you will
+need to create a Docker account.
+
+3. Consider also installing Kitematic for managing docker containers and images,
+though this can also be done easily on the command. https://kitematic.com
+
+4. Install the Insomnia REST client: https://insomnia.rest/download/ (or your 
+prefered REST client test app). This will help with testing services.
+
+5. Clone this repository:
+    $ git clone https://github.com/tripal/Tripal4_services_proof-of-concept.git
 
 This repository contains 3 base containers to get a Tripal services system
 running on a local machine. You will need all three containers described 
 below.
 
-Launch all three containers before following the Konga instructions described 
-below.
+Launch all three containers before following the service setup instructions in
+Gateway/README.md.
 
 
 ### Tripal3/
