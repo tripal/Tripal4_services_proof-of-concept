@@ -61,8 +61,14 @@ The starter/ Docker container is a barebones setup for running a Python/Flask
 service.
 
     $ cd Services/starter/
-    
+
+    Build the docker containers
     $ docker-compose build  
+    
+    Setup the Network
+    $ docker network create tripal-kong
+    
+    Bring up the containers
     $ docker-compose up
     
     Test:
@@ -71,7 +77,7 @@ service.
     $ curl http://localhost:5000
       Should see "Hello, World!"
     
-    Enter container shell:
+    To enter container shell:
     $ docker ps   # to get CONTAINER ID
     $ docker exec -it [CONTAINER ID] /bin/sh
    
