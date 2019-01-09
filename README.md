@@ -2,11 +2,12 @@
 Docker containers and experimental code for a services-driven approach to 
 Tripal 4.  
 
-**Stack:** Drupal7/Tripal3, Kong, Python/Flask, Nginx.
+### Stack: 
+Drupal7/Tripal3, Kong, Python/Flask, Nginx.  
 There may well be better stacks, but this will help us explore these elements 
 with the hope of then knowing better how to assess alternatives.
 
-Preliminary steps
+**Preliminary steps**
 1. Make sure you have at least 8Gb free on your laptop. (This is actually just 
 a guess.)
 
@@ -97,6 +98,10 @@ completed.
 **Instructions for getting started with Kong and how to create a sample toy 
 service is in README.md in the Gateway/ directory.**
 
+### Some helpful Docker commands
 
+Copy files in or out of a container:
 
+    $ docker cp [image id]:[path] [path]
+    $ docker cp [path] [image id]:[path] [path]
 
