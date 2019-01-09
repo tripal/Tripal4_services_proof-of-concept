@@ -1,0 +1,13 @@
+version: "3"
+#networks:
+#  default:
+#    external:
+#      name: tripal-kong
+
+services:
+  tpl_gene_service:
+    build: .
+    ports:
+     - "5001:5000"
+    volumes:
+     - .:/code
