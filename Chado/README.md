@@ -7,18 +7,23 @@ $ psql -U [username] < 1_all_chado_tables.sql
 ``` 
 (There will likely be several errors, but these _appear_ to be harmless.)
 
-### Load sample germplasm data
-2- Load several tables that the germplasm data relies on:
+### Load starter data
+2- Load several tables that the germplasm and gene model data relies on:
 ```
-$ psql -U [username] < 2_load_germplasm_1.sql
+$ psql -U [username] < 2_load_basic_tables.sql
+```
+### Load sample germplasm data, split over two files
+3- Load several tables that the germplasm data relies on:
+```
+$ psql -U [username] < 3_load_germplasm_1.sql
 ```
 (Again, there may be several does or does not exist errors)
 
-3- Load data into several germplasm tables:
+4- Load data into several germplasm tables:
 ```
-$ /Library/PostgreSQL/9.4/bin/psql -U postgres < 3_load_germplasm_2.sql
+$ /Library/PostgreSQL/9.4/bin/psql -U postgres < 4_load_germplasm_2.sql
 ``` 
-4- Start up psql:
+5- Start up psql:
 ```
 $ psql -U [username]
 ``` 
@@ -36,11 +41,11 @@ and test data with:
     ORDER BY s.name;
 
 ### To add some gene model data, complete the steps above, then:
-5- Load gene model data:
+6- Load gene model data:
 ```
-$ /Library/PostgreSQL/9.4/bin/psql -U postgres < 4_load_gene_model.sql
+$ /Library/PostgreSQL/9.4/bin/psql -U postgres < 5_load_gene_model.sql
 ```
-6- Start up psql:
+7- Start up psql:
 ```
     $ psql -U [username]
 ```
