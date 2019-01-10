@@ -92,8 +92,8 @@ To Run:
     $ cd Gateway/
     $ docker-compose up
 
-Active on: http://127.0.0.1:8000/route  
-Webadmin: http://127.0.0.1:1337 (default)
+access on: http://127.0.0.1:8000  
+admin: http://127.0.0.1:8001 
 
 First time running it, the postgres volume needs to populated, so 
 you may need to stop and restart the service once migrations are
