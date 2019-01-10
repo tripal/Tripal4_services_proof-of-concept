@@ -1,8 +1,8 @@
 version: "3"
-#networks:
-#  default:
-#    external:
-#      name: tripal-kong
+networks:
+  default:
+    external:
+      name: tripal-kong
 
 services:
   tpl_gene_service:
