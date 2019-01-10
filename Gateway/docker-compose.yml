@@ -30,8 +30,8 @@ services:
   #db migration: kong
   
   kong-migration:
-    image: kong:latest
-    command: "kong migrations up"
+    image: kong:1.0.0
+    command: "kong migrations bootstrap"
     networks:
       - tripal-kong
     restart: on-failure
@@ -45,7 +45,7 @@ services:
   #kong
   
   kong:
-    image: kong:latest
+    image: kong:1.0.0
     restart: always
     networks:
       - tripal-kong
