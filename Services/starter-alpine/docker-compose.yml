@@ -1,8 +1,9 @@
 version: "3"
-#networks:
-#  default:
-#    external:
-#      name: trpl-kong
+
+networks:
+  default:
+    external:
+      name: tripal-kong
 
 services:
   starter_service:
