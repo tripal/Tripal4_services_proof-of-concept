@@ -1,0 +1,13 @@
+version: "3"
+networks:
+  default:
+    external:
+      name: tripal-kong
+
+services:
+  tripal_entity_service:
+    build: .
+    ports:
+     - "5005:5005"
+    volumes:
+     - .:/code
