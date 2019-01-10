@@ -12,6 +12,8 @@ services:
      - "5432"
     environment:
       POSTGRES_PASSWORD: example
+      POSTGRES_USER: chado_user
+      POSTGRES_DB: chado
     volumes:
       - sql:/setup_sql
       - pgdata:/var/lib/postgresql/data
