@@ -13,7 +13,7 @@ services:
     environment:
       POSTGRES_PASSWORD: example
     volumes:
-      - sql:/setup_sql
+      - ./sql:/setup_sql
       - pgdata:/var/lib/postgresql/data
       - ./db-init-scripts:/docker-entrypoint-initdb.d
 
