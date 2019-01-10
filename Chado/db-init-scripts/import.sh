@@ -1,4 +1,4 @@
-if [ "$( pqsl -U postgres postgres -tAc "SELECT 1 FROM pg_database WHERE datname='drupal'" )" != '1' ]
+if [ "$( psql -U postgres postgres -tAc "SELECT 1 FROM pg_database WHERE datname='drupal'" )" != '1' ]
 then
     echo "Database drupal does not exist, creating it"
     createdb -U postgres drupal
