@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  app:
+    image: nginx:latest
+    ports:
+      - "5002:80"
+    volumes:
+      - ./app:/code
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+  php:
+    image: php:fpm
+    volumes:
+      - ./app:/code
+
+networks:
+  default:
+    external:
+      name: tripal-kong
