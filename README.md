@@ -2,7 +2,25 @@
 Docker containers and experimental code for a services-driven approach to 
 Tripal 4.  
 
-**Stack:** Drupal7/Tripal3, Kong, Python/Flask, Nginx.
+**Stack:** 
+
+*[Drupal7/Tripal](https://www.tripal.info/) [PHP]* - the traditional PHP based 
+Tripal environment.
+
+*[postgreSQL](https://www.postgresql.org/)* - database
+
+*[Kong](https://konghq.com/kong/)* - API gateway. Used to establish routes to 
+services so API calls can be made to the same location. Also can be used to 
+manage authentication and authorization on service calls.
+
+*[Flask](http://flask.pocoo.org/) [python]* - One of many frameworks that exist for 
+creating services.
+
+*[Nginx](https://nginx.org/en/)* - lightweight web server.
+
+*[Docker](https://www.docker.com/)* - container-based virtualisation to reduce 
+dependence on host setup.
+
 There may well be better stacks, but this will help us explore these elements 
 with the hope of then knowing better how to assess alternatives.
 
