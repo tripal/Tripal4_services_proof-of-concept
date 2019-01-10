@@ -11,8 +11,4 @@
 |
 */
 
-$router->get('/search/{limit?}', function () use ($router) {
-
-
-    return ''
-});
+$router->get('/', 'HomeController@index');
