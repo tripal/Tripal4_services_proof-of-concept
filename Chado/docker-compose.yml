@@ -18,6 +18,5 @@ services:
       - ./db-init-scripts:/docker-entrypoint-initdb.d
 
 volumes:
-  druexp: {}
   pgdata: {}
   sql: {}
