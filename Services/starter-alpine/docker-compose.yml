@@ -1,0 +1,13 @@
+version: "3"
+#networks:
+#  default:
+#    external:
+#      name: trpl-kong
+
+services:
+  starter_service:
+    build: .
+    ports:
+     - "5001:5000"
+    volumes:
+     - .:/code
