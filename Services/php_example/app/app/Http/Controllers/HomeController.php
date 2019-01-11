@@ -2,27 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
     /**
      * Index controller.
      *
-     * @return string
+     * @return array
      */
-    public function index(Request $request, $limit = 10)
+    public function index()
     {
-        $content = 'Hello Lumen!';
+        $app = app();
 
-        $content .= "<br>";
-
-        $content .= "GET Parameter \"genus:\" ".$request->genus;
-
-        $content .= "<br>";
-
-        $content .= "Limit passed by URL: $limit";
-
-        return $content;
+        return $app->router->getRoutes();
     }
 }
