@@ -13,7 +13,7 @@ def hello():
 
 @app.route('/entity_data/', methods=['GET'])
 def get_content_from_db():
-    return str(get_db_data('tsfan', 'tripal_user', 'tripal4_tripal4_db_1', 'example', 'entity'))
+    return str(get_db_data())
 
 # Designed full route: /entity/{version}
 @app.route('/entity/<version>/', methods=['GET'])
