@@ -1,50 +1,29 @@
 import json
 import psycopg2
 
-def get_tripal_connection():
-    conn = ''
-
-    try:
-        conn = psycopg2.connect(dbname = 'tripal_user', user = 'tripal_user', host = 'tripal4_tripal4_db_1', password = 'example')
-    except Exception as e:
-        print("Error in SQL:\n", e)
-    return conn
-
-def get_tripal_db_data():
-    db = get_tripal_connection()
-    try:
-        sqlstr = "SELECT * FROM entity LIMIT 5"
-        cur = db.cursor()
-        cur.execute(sqlstr)
-        output_json = cur.fetchall()
-    except Exception as e:
-        print("Error in SQL:\n", e)
-    return output_json
-
-
-def getMysqlConnection(dbname, user, host, password):
+def getMysqlConnection():
   print("getMysqlConnection");
   conn = ''
   try:
-    conn = psycopg2.connect(dbname = dbname, user = user, host = host, password = password)
+    conn = psycopg2.connect("dbname='chado_user' user='chado_user' host='chado_chado_db_1' password='example'")
   except Exception as e:
     print("Error in SQL:\n", e)
   return conn
 
 
-def get_db_data(dbname, user, host, password, table):
-  db = getMysqlConnection(dbname, user, host, password)
+def get_db_data():
+  db = getMysqlConnection()
   output_json = ''
   try:
-    sqlstr = 'SELECT * FROM ' + table + ' LIMIT 5'
+    sqlstr = "SELECT * from chado.feature limit 5"
     cur = db.cursor()
     cur.execute(sqlstr)
     output_json = cur.fetchall()
   except Exception as e:
     print("Error in SQL:\n", e)
   return output_json
-
-
+  
+    
 #
 # These would normally be populated by querying the database, but we'll just fudge some
 # data
@@ -65,8 +44,8 @@ def list_entity_types():
 
 # List all entities of a certain type
 def list_entities_by_type(entity_type):
-
-# List
+ 
+# List 
     if (entity_type == 1):
         return json.dumps(organism_entities)
     elif (entity_type == 2):
