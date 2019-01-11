@@ -5,17 +5,19 @@ networks:
       name: tripal-kong
 
 services:
-  chado_db:
+  tripal4_db:
     image: postgres:9.6-alpine
     restart: always
     expose:
      - "5432"
     environment:
       POSTGRES_PASSWORD: example
-      POSTGRES_USER: chado_user
+      POSTGRES_USER: tripal_user
     volumes:
+      - ./sql:/setup_sql
       - pgdata:/var/lib/postgresql/data
       - ./db-init-scripts:/docker-entrypoint-initdb.d
 
 volumes:
   pgdata: {}
+  sql: {}
