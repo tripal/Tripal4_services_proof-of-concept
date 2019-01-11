@@ -1,4 +1,5 @@
-from flask import Flask, render_template,  request, json
+from flask import Flask, render_template, request, json
+from database import * 
 
 app = Flask(__name__)
 
@@ -11,9 +12,11 @@ def hello():
 # Tell Drupal about it
 
 # Designed full route: /entity/{version}
-@app.route('/entity/<version>/')
+@app.route('/entity/<version>/', methods=['GET'])
 def get_content_types(version):
-    return version
+  if request.method == 'GET':
+    return str(get_db_data())
+    #return version
 
 # Designed full route: /entity/{version}/{entity_type}
 @app.route('/entity/<version>/<int:entity_type>/', methods=['GET'])
@@ -42,6 +45,10 @@ def post_entity(provider, entity_type):
 def post_entity_fields(entity_type):
   if request.method == 'POST':
     return "placeholder\n"
+
+@app.errorhandler(404)
+def page_not_found(error):
+  return 'This endpoint does not exist\n', 404
 
 
 if __name__ == '__main__':

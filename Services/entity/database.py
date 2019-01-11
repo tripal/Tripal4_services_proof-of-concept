@@ -1,5 +1,29 @@
 import json
+import psycopg2
 
+def getMysqlConnection():
+  print("getMysqlConnection");
+  conn = ''
+  try:
+    conn = psycopg2.connect("dbname='chado_user' user='chado_user' host='chado_chado_db_1' password='example'")
+  except Exception as e:
+    print("Error in SQL:\n", e)
+  return conn
+
+
+def get_db_data():
+  db = getMysqlConnection()
+  output_json = ''
+  try:
+    sqlstr = "SELECT * from chado.feature limit 5"
+    cur = db.cursor()
+    cur.execute(sqlstr)
+    output_json = cur.fetchall()
+  except Exception as e:
+    print("Error in SQL:\n", e)
+  return output_json
+  
+    
 #
 # These would normally be populated by querying the database, but we'll just fudge some
 # data
@@ -13,21 +37,18 @@ organism_entities = ["organism_1","organism_2"]
 analysis_entities = ["analysis_1","analysis_2"]
 project_entities = ["project_1","project_2"]
 
-
-
-
 # List all entities types
 def list_entity_types():
-    #return "list_of_entities from version %s" % version
-    return json.dumps(entity_types)
+  #return "list_of_entities from version %s" % version
+  return json.dumps(entity_types)
 
 # List all entities of a certain type 
 def list_entities_by_type(entity_type):
-    if (entity_type == "organism"):
-        return json.dumps(organism_entities);
-    elif (entity_type == "analysis"):
-        return json.dumps(organism_entities);
-    elif (entity_type == "project"):
-        return json.dumps(project_entities);
+  if (entity_type == "organism"):
+    return json.dumps(organism_entities);
+  elif (entity_type == "analysis"):
+    return json.dumps(organism_entities);
+  elif (entity_type == "project"):
+    return json.dumps(project_entities);
         
 # List 
