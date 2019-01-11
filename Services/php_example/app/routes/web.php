@@ -12,3 +12,7 @@
 */
 
 $router->get('/', 'HomeController@index');
+
+$router->get('/genes', 'GenesController@index');
+$router->get('/gene/{id}', 'GenesController@show');
+$router->post('/genes', 'GenesController@create');
