@@ -1,55 +1,41 @@
 #run tripal instance with docker-compose
 
 version: '3'
-services: 
+services:
 
-  web:
+  drupal8_db:
+    image: postgres:9.6-alpine
+    restart: always
+    expose:
+    - "5432"
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: drupal8_user
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db-init-scripts:/docker-entrypoint-initdb.d
+
+  drupal8_web:
       build: .
       environment:
         DB_NAME: drupal
-        DB_HOST: db
+        DB_HOST: drupal8_db
         DB_PORT: 5432
-        PGUSER: postgres
+        PGUSER: drupal8_user
         PGPASSWORD: example
       ports:
         - "8888:80"
       volumes:
-        - druexp:/pgexp
-      links: 
-        - db
+        - webdir:/var/www/html
 
-  # drupal:
-  #   image: drupal:8-apache
-  #   ports:
-  #     - 8080:80
-  #   volumes:
-  #     - /var/www/html/modules
-  #     - /var/www/html/profiles
-  #     - /var/www/html/themes
-  #     # this takes advantage of the feature in Docker that a new anonymous
-  #     # volume (which is what we're creating here) will be initialized with the
-  #     # existing content of the image at the same location
-  #     - /var/www/html/sites
-  #   restart: always
-    
-  db:
-    image: postgres:9.6-alpine
-    restart: always
-    expose: 
-    - "5432"
-    environment:
-      POSTGRES_PASSWORD: example 
-    volumes:
-      - druexp:/pgexp
-      - pgdata:/var/lib/postgresql/data
-      - ./db-init-scripts:/docker-entrypoint-initdb.d
-  
+
   adminer:
     image: adminer
     restart: always
     ports:
       - "8080:8080"
 
-volumes: 
-  druexp: {}
+volumes:
   pgdata: {}
+  webdir: {}

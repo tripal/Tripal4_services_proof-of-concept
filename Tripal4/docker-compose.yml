@@ -14,10 +14,8 @@ services:
       POSTGRES_PASSWORD: example
       POSTGRES_USER: tripal_user
     volumes:
-      - ./sql:/setup_sql
       - pgdata:/var/lib/postgresql/data
       - ./db-init-scripts:/docker-entrypoint-initdb.d
 
 volumes:
   pgdata: {}
-  sql: {}
