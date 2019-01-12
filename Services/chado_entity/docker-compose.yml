@@ -5,7 +5,7 @@ networks:
       name: tripal-kong
 
 services:
-  tripal_entity_service:
+  chado_entity_service:
     build: .
     ports:
      - "5005:5005"

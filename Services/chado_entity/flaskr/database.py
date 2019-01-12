@@ -35,7 +35,7 @@ organism_entities = ["organism_1","organism_2"]
 analysis_entities = ["analysis_1","analysis_2"]
 project_entities = ["project_1","project_2"]
 
-organism_fields = 
+organism_fields = [] 
 
 # List all entities of a certain type
 def list_entities_by_type(entity_type): 
@@ -46,18 +46,6 @@ def list_entities_by_type(entity_type):
         return json.dumps(analysis_entities)
     elif (entity_type == 3):
         return json.dumps(project_entities)
-
-# List single entity
-def list_entity(entity_type, entity_id):
-  try:
-    if (entity_type == 1):
-        return json.dumps(organism_entities[entity_id])
-    elif (entity_type == 2):
-        return json.dumps(analysis_entities[entity_id])
-    elif (entity_type == 3):
-        return json.dumps(project_entities[entity_id])
-  except IndexError:
-      return 'Entity does not exist'
 
 # List field data for a specific entity
 def list_entity_fields(entity_type, entity_id, field_name):
